@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.IO;
 using Nethereum.Hex.HexTypes;
 using Nethereum.JsonRpc.UnityClient;
 using Nethereum.RPC.Eth.DTOs;
@@ -11,6 +12,7 @@ using UnityEngine.UI;
 
 public class Account : MonoBehaviour
 {
+    [Space]
     public string json;
     public string password;
     public string privateKey;
@@ -26,6 +28,7 @@ public class Account : MonoBehaviour
 
     [Space]
     public Text signUpPW;
+    public Text signInPW;
     public Text passwordStrength;
 
     [Space]
@@ -34,7 +37,12 @@ public class Account : MonoBehaviour
     public Text balance;
     public Text tx;
 
-    private void Update()
+    private void Start()
+    {
+        IsEncryptedJson();
+    }
+
+    void Update()
     {
         if (signUpPW.text.Length > 7)
         {
@@ -43,6 +51,25 @@ public class Account : MonoBehaviour
         else
         {
             passwordStrength.enabled = true;
+        }
+    }
+
+    public void IsEncryptedJson()
+    {
+        UIManager uiManager = FindObjectOfType<UIManager>();
+
+        try
+        {
+            string encryptedJson = File.ReadAllText(WalletManager.Instance.jsonPath);
+            json = encryptedJson;
+
+            uiManager.creatFlag = false;
+            uiManager.AccountButton();
+        }
+        catch (FileNotFoundException)
+        {
+            uiManager.creatFlag = true;
+            uiManager.AccountButton();
         }
     }
 
@@ -64,18 +91,22 @@ public class Account : MonoBehaviour
             password = signUpPW.text;
             WalletManager.Instance.CreateAccount(password);
 
+            IsEncryptedJson();
+
             Debug.Log("Address:" + WalletManager.Instance.publicAddress);
             Debug.Log("PrivateKey:" + WalletManager.Instance.privateKey);
             Debug.Log("Json:" + WalletManager.Instance.encryptedJson);
             Debug.Log("Password:" + WalletManager.Instance.password);
 
-            UIFunction();
+            password = null;
+            //UIFunction();
         }
     }
 
     // password와 encryptedjson으로 로그인
     public void ImportAccountFromJson()
     {
+        password = signInPW.text;
         WalletManager.Instance.ImportAccountFromJson(password, json);
 
         Debug.Log("Address:" + WalletManager.Instance.publicAddress);
@@ -228,7 +259,7 @@ public class Account : MonoBehaviour
         //if (qrcode)
         //    qrcode.RenderQRCode(WalletManager.Instance.publicAddress);
 
-        addr.text = "Address:" + WalletManager.Instance.publicAddress;
+        //addr.text = "Address:" + WalletManager.Instance.publicAddress;
     }
 
     private void CreateDefaultAccount()
