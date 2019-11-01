@@ -18,7 +18,7 @@ public class WalletManager : MonoBehaviour
     public string privateKey;
     public string password;
     public string encryptedJson;
-    public string jsonPath = @"c:\{0}.json";
+    public string jsonPath;
 
     public void Awake()
     {
@@ -41,8 +41,7 @@ public class WalletManager : MonoBehaviour
 
         var keystoreservice = new Nethereum.KeyStore.KeyStoreService();
         string encryptedJson = keystoreservice.EncryptAndGenerateDefaultKeyStoreAsJson(password, privateKey, address);
-        var encryptedKey = string.Format(jsonPath, keystoreservice.GenerateUTCFileName(address));
-        File.WriteAllText(encryptedKey, encryptedJson);
+        File.WriteAllText(jsonPath, encryptedJson);
 
         this.password = password;
         this.publicAddress = address;

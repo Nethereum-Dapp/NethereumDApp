@@ -26,12 +26,25 @@ public class Account : MonoBehaviour
 
     [Space]
     public Text signUpPW;
+    public Text passwordStrength;
 
     [Space]
     // public QRCodeDisplay qrcode;
     public Text addr;
     public Text balance;
     public Text tx;
+
+    private void Update()
+    {
+        if (signUpPW.text.Length > 7)
+        {
+            passwordStrength.enabled = false;
+        }
+        else
+        {
+            passwordStrength.enabled = true;
+        }
+    }
 
     public void GetBalance()
     {
@@ -46,15 +59,18 @@ public class Account : MonoBehaviour
 
     public void CreateAccount()
     {
-        password = signUpPW.text;
-        WalletManager.Instance.CreateAccount(password);
+        if(signUpPW.text.Length > 7)
+        {
+            password = signUpPW.text;
+            WalletManager.Instance.CreateAccount(password);
 
-        Debug.Log("Address:" + WalletManager.Instance.publicAddress);
-        Debug.Log("PrivateKey:" + WalletManager.Instance.privateKey);
-        Debug.Log("Json:" + WalletManager.Instance.encryptedJson);
-        Debug.Log("Password:" + WalletManager.Instance.password);
+            Debug.Log("Address:" + WalletManager.Instance.publicAddress);
+            Debug.Log("PrivateKey:" + WalletManager.Instance.privateKey);
+            Debug.Log("Json:" + WalletManager.Instance.encryptedJson);
+            Debug.Log("Password:" + WalletManager.Instance.password);
 
-        UIFunction();
+            UIFunction();
+        }
     }
 
     // password와 encryptedjson으로 로그인
