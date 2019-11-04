@@ -567,7 +567,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555405}
+      - m_Target: {fileID: 0}
         m_MethodName: CreateAccount
         m_Mode: 1
         m_Arguments:
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555406}
+      - m_Target: {fileID: 0}
         m_MethodName: AccountButton
         m_Mode: 1
         m_Arguments:
@@ -1494,7 +1494,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555405}
+      - m_Target: {fileID: 0}
         m_MethodName: SubmitSeed
         m_Mode: 1
         m_Arguments:
@@ -1773,7 +1773,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555405}
+      - m_Target: {fileID: 0}
         m_MethodName: CopySeedBt
         m_Mode: 1
         m_Arguments:
@@ -2431,7 +2431,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555406}
+      - m_Target: {fileID: 0}
         m_MethodName: AccountButton
         m_Mode: 1
         m_Arguments:
@@ -2710,7 +2710,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555405}
+      - m_Target: {fileID: 0}
         m_MethodName: ImportAccountFromJson
         m_Mode: 1
         m_Arguments:
@@ -2842,10 +2842,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1075555402}
-  - component: {fileID: 1075555405}
-  - component: {fileID: 1075555404}
-  - component: {fileID: 1075555403}
-  - component: {fileID: 1075555406}
   m_Layer: 0
   m_Name: LoginManager
   m_TagString: Untagged
@@ -2867,87 +2863,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1075555403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075555401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688f016e9b03c854cb1e39e923bcbf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: 
-  publicAddress: 
-  privateKey: 
-  password: 
-  encryptedJson: 
-  jsonPath: C:\developer.yhl\Wego_Project\NethereumDApp\.secret.json
---- !u!114 &1075555404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075555401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9329e35cc5429bd48bbba278fec06161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ABI: 
-  Bytecode: 
-  contractAddress: 
---- !u!114 &1075555405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075555401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87951887e2669cc46af764945b30f0f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  json: 
-  password: 
-  privateKey: 
-  gas: 0
-  gasPrice: 0
-  transferAmount: 0
-  toAddress: 
-  signUpPW: {fileID: 1380121648}
-  signInPW: {fileID: 1253776291}
-  passwordStrength: {fileID: 1349740284}
-  passwordNotice: {fileID: 60027278}
-  addr: {fileID: 0}
-  balance: {fileID: 0}
-  tx: {fileID: 0}
-  seedPanel: {fileID: 541764289}
-  forgotPanel: {fileID: 1380106533}
-  seedText: {fileID: 913666155}
-  submitSeedText: {fileID: 2031018719}
-  submitPWText: {fileID: 184948398}
-  passwordStrength2: {fileID: 1642068132}
-  missingText: {fileID: 1067577124}
---- !u!114 &1075555406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075555401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a54bbf8f4718ce84ead578ecba4d131f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatCanvas: {fileID: 1199614695}
-  loginCanvas: {fileID: 837939387}
-  creatFlag: 0
 --- !u!1 &1199614695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,7 +3044,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555405}
+      - m_Target: {fileID: 0}
         m_MethodName: CancleForgotPanel
         m_Mode: 1
         m_Arguments:
@@ -4577,7 +4492,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075555405}
+      - m_Target: {fileID: 0}
         m_MethodName: ForgotPassword
         m_Mode: 1
         m_Arguments:
