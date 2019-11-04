@@ -2919,8 +2919,8 @@ MonoBehaviour:
   gasPrice: 0
   transferAmount: 0
   toAddress: 
-  signUpPW: {fileID: 540150936}
-  signInPW: {fileID: 1982832206}
+  signUpPW: {fileID: 1380121648}
+  signInPW: {fileID: 1253776291}
   passwordStrength: {fileID: 1349740284}
   passwordNotice: {fileID: 60027278}
   addr: {fileID: 0}
@@ -2929,8 +2929,8 @@ MonoBehaviour:
   seedPanel: {fileID: 541764289}
   forgotPanel: {fileID: 1380106533}
   seedText: {fileID: 913666155}
-  submitSeedText: {fileID: 1015276013}
-  submitPWText: {fileID: 1402505320}
+  submitSeedText: {fileID: 2031018719}
+  submitPWText: {fileID: 184948398}
   passwordStrength2: {fileID: 1642068132}
   missingText: {fileID: 1067577124}
 --- !u!114 &1075555406
@@ -3265,7 +3265,7 @@ GameObject:
   - component: {fileID: 1253776292}
   - component: {fileID: 1253776291}
   m_Layer: 5
-  m_Name: Password
+  m_Name: SignInPW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3628,7 +3628,7 @@ GameObject:
   - component: {fileID: 1380121649}
   - component: {fileID: 1380121648}
   m_Layer: 5
-  m_Name: Password
+  m_Name: SignUpPW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

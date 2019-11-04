@@ -28,8 +28,8 @@ public class Account : MonoBehaviour
     public string toAddress;
 
     [Space]
-    public Text signUpPW;
-    public Text signInPW;
+    public InputField signUpPW;
+    public InputField signInPW;
     public Text passwordStrength;
     public Text passwordNotice;
 
@@ -43,8 +43,8 @@ public class Account : MonoBehaviour
     public GameObject seedPanel;
     public GameObject forgotPanel;
     public Text seedText;
-    public Text submitSeedText;
-    public Text submitPWText;
+    public InputField submitSeedText;
+    public InputField submitPWText;
     public Text passwordStrength2;
     public Text missingText;
 
