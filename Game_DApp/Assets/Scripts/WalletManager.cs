@@ -8,6 +8,8 @@ using Nethereum.JsonRpc.UnityClient;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Util;
 using UnityEngine;
+using Nethereum.Hex.HexConvertors.Extensions;
+using Nethereum.KeyStore.Crypto;
 
 public class WalletManager : MonoBehaviour
 {
@@ -52,10 +54,20 @@ public class WalletManager : MonoBehaviour
     public void ImportAccountFromJson(string password, string encryptedJson)
     {
         var keystoreservice = new Nethereum.KeyStore.KeyStoreService();
+        byte[] privateKey;
+        string address;
 
-        var privateKey = keystoreservice.DecryptKeyStoreFromJson(password, encryptedJson);
-
-        var address = keystoreservice.GetAddressFromKeyStore(encryptedJson);
+        try
+        {
+            privateKey = keystoreservice.DecryptKeyStoreFromJson(password, encryptedJson);
+            address = keystoreservice.GetAddressFromKeyStore(encryptedJson);
+        }
+        catch (DecryptionException ex)
+        {
+            Debug.Log("DecryptionException");
+            FindObjectOfType<Account>().passwordNotice.enabled = true;
+            return;
+        }
 
         this.password = password;
         this.publicAddress = address;

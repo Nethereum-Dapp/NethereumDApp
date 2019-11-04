@@ -9,10 +9,6 @@ public class UIManager : MonoBehaviour
     public GameObject loginCanvas;
     public bool creatFlag = false;
 
-    [Space]
-    public Text signUpPW;
-    public Text passwordStrength;
-
     public void AccountButton()
     {
         if (creatFlag)

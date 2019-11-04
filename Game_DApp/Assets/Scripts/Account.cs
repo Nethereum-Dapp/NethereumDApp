@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using System.IO;
+using NBitcoin;
 using Nethereum.Hex.HexTypes;
 using Nethereum.JsonRpc.UnityClient;
 using Nethereum.RPC.Eth.DTOs;
@@ -30,12 +31,22 @@ public class Account : MonoBehaviour
     public Text signUpPW;
     public Text signInPW;
     public Text passwordStrength;
+    public Text passwordNotice;
 
     [Space]
     // public QRCodeDisplay qrcode;
     public Text addr;
     public Text balance;
     public Text tx;
+
+    [Space]
+    public GameObject seedPanel;
+    public GameObject forgotPanel;
+    public Text seedText;
+    public Text submitSeedText;
+    public Text submitPWText;
+    public Text passwordStrength2;
+    public Text missingText;
 
     private void Start()
     {
@@ -44,13 +55,28 @@ public class Account : MonoBehaviour
 
     void Update()
     {
-        if (signUpPW.text.Length > 7)
+        if (signUpPW.isActiveAndEnabled)
         {
-            passwordStrength.enabled = false;
+            if (signUpPW.text.Length > 7)
+            {
+                passwordStrength.enabled = false;
+            }
+            else
+            {
+                passwordStrength.enabled = true;
+            }
         }
-        else
+
+        if (forgotPanel.activeSelf)
         {
-            passwordStrength.enabled = true;
+            if (submitPWText.text.Length > 7)
+            {
+                passwordStrength2.enabled = false;
+            }
+            else
+            {
+                passwordStrength2.enabled = true;
+            }
         }
     }
 
@@ -91,8 +117,16 @@ public class Account : MonoBehaviour
             password = signUpPW.text;
             WalletManager.Instance.CreateAccount(password);
 
+            seedPanel.SetActive(true);
+
+            // Creat mnemonic
+            Mnemonic mnemo = new Mnemonic(Wordlist.English, WordCount.Twelve);
+            ExtKey hdRoot = mnemo.DeriveExtKey(password);
+            seedText.text = mnemo.ToString();
+
             IsEncryptedJson();
 
+            Debug.Log(mnemo);
             Debug.Log("Address:" + WalletManager.Instance.publicAddress);
             Debug.Log("PrivateKey:" + WalletManager.Instance.privateKey);
             Debug.Log("Json:" + WalletManager.Instance.encryptedJson);
@@ -101,6 +135,51 @@ public class Account : MonoBehaviour
             password = null;
             //UIFunction();
         }
+    }
+
+    public void CopySeedBt()
+    {
+        ClipBoard = seedText.ToString();
+        seedPanel.SetActive(false);
+    }
+
+    public static string ClipBoard
+    {
+        get { return GUIUtility.systemCopyBuffer; }
+        set { GUIUtility.systemCopyBuffer = value; }
+    }
+
+    public void ForgotPassword()
+    {
+        forgotPanel.SetActive(true);
+    }
+
+    public void SubmitSeed()
+    {
+        if (submitSeedText.text != null && submitPWText.text.Length > 7)
+        {
+            try {
+                string seedWord = submitSeedText.text;
+                string password = submitPWText.text;
+                Mnemonic mnemo = new Mnemonic(seedWord, Wordlist.English);
+                ExtKey hdRoot = mnemo.DeriveExtKey(password);
+
+                
+
+                CancleForgotPanel();
+
+                Debug.Log("New password:" + password);
+            }
+            catch (FormatException)
+            {
+                missingText.enabled = true;
+            }
+        }
+    }
+
+    public void CancleForgotPanel()
+    {
+        forgotPanel.SetActive(false);
     }
 
     // password와 encryptedjson으로 로그인
